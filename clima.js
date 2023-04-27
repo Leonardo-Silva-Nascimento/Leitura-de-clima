@@ -31,10 +31,11 @@ const estadosCidades = {
 
 const apiKey = '9eff6d3d63b7c7be8e54d33d30584705';
 
-$(document).ready(function () {
     // Inicializa o Select2
-    $('#estado, #cidade').select2({
-        theme: 'bootstrap4'
+    $('.select').select2({
+        //theme: 'bootstrap4',
+        width: 'auto',
+        placeholder: 'Selecione um estado',
     });
 
     // Preenche o select de estados com os estados do Brasil
@@ -54,8 +55,8 @@ $(document).ready(function () {
     });
 
     // Busca e exibe o clima ao selecionar uma cidade
-    $('#cidade').on('change', function () {
-        const cidadeSelecionada = $(this).val();
+    $('#search').on('click', function () {
+        const cidadeSelecionada = $('#cidade').val();
 
         if (cidadeSelecionada) {
             buscaClima(cidadeSelecionada);
@@ -63,7 +64,6 @@ $(document).ready(function () {
             $('#resultado').empty();
         }
     });
-});
 
 function buscaClima(cidade) {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cidade},BR&appid=${apiKey}&units=metric&lang=pt_br`;
